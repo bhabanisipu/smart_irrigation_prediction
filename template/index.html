@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Smart Irrigation Predictor</title>
+
+<link rel="stylesheet"
+      href="../static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Smart Irrigation Requirement Predictor</h1>
+
+    <p>
+        Enter the last 20 historical observations
+        to predict whether irrigation is required.
+    </p>
+
+
+    <form method="POST">
+
+        <h3>Enter 20 Historical Observations</h3>
+
+        <p>
+            Format for each row:
+            <br>
+            <strong>
+                Crop Type, Temperature, Humidity,
+                Soil Moisture, Soil Temperature
+            </strong>
+        </p>
+
+        <p>
+            Example:
+            <br>
+            <code>
+                1,28.5,65,42.3,24.5
+            </code>
+        </p>
+
+
+        <textarea
+            name="historical_data"
+            rows="20"
+            cols="70"
+            placeholder="Enter 20 rows here...&#10;&#10;Example:&#10;1,28.5,65,42.3,24.5&#10;1,28.7,64,41.9,24.6&#10;..."
+            required></textarea>
+
+
+        <br><br>
+
+
+        <button type="submit">
+            Predict Irrigation
+        </button>
+
+    </form>
+
+
+    {% if prediction %}
+
+        <div class="result">
+
+            <h2>Prediction Result</h2>
+
+            <h3>{{ prediction }}</h3>
+
+            <p>
+                Prediction Probability:
+                <strong>{{ probability }}%</strong>
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    {% if error %}
+
+        <div class="error">
+
+            <h3>Error</h3>
+
+            <p>{{ error }}</p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
